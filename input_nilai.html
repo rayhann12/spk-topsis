@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Input Nilai</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<div class="container mt-5">
+    <div class="card shadow">
+        <div class="card-body">
+
+            <h4 class="text-dark mb-4">Input Nilai Alternatif</h4>
+
+            <form method="post">
+
+                <!-- Pilih Alternatif -->
+                <div class="mb-3">
+                    <label class="form-label">Pilih Mahasiswa</label>
+                    <select name="alternative_id" class="form-select" required>
+                        {% for a in alternatives %}
+                        <option value="{{ a.id }}">{{ a.nama }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <!-- Input Nilai Kriteria -->
+                {% for c in criteria %}
+                <div class="mb-3">
+                    <label class="form-label">
+                        {{ c.nama_kriteria }} ({{ c.jenis }})
+                    </label>
+                    <input type="number" step="0.01"
+                           name="nilai_{{ c.id }}"
+                           class="form-control"
+                           required>
+                </div>
+                {% endfor %}
+
+                <button class="btn btn-primary">Simpan Nilai</button>
+                <a href="/penilai" class="btn btn-secondary">Batal</a>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
